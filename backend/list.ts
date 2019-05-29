@@ -2,7 +2,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { DynamoDB } from 'aws-sdk'
 import 'source-map-support/register';
 import * as uuid from 'uuid/v4'
-import {validateToken} from './auth'
+import {validateToken, TwitchJWTSchema} from './auth'
 
 const dynamoDb = new DynamoDB.DocumentClient();
 
@@ -39,14 +39,15 @@ export const getItems: APIGatewayProxyHandler = async (event, _context) => {
 
 export const setItems: APIGatewayProxyHandler = async (event, _context) => {
 	//Validate auth
+	let token:TwitchJWTSchema;
 	try {
-		validateToken(event.headers.authToken);
+		token = validateToken(event.headers.TwitchAuthToken);
 	} catch (error) {
 		console.error(error);
 		return {
 			statusCode: error.statusCode || 501,
 			headers: {'Content-Type': 'text/plain'},
-			body: `Invalid token ${event.headers.authToken}`
+			body: `Invalid token`
 		}
 	}
 
@@ -54,7 +55,7 @@ export const setItems: APIGatewayProxyHandler = async (event, _context) => {
 	console.log(`event body is `, event.body)
 	const data = JSON.parse(event.body);
 	const listItem: ListSchema = {
-		id: event.pathParameters.id,
+		id: token.opaque_user_id,
 		internalId: uuid(),
 		list: data.list,
 		createdAt: timestamp,

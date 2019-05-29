@@ -16,20 +16,19 @@ export interface TwitchJWTSchema {
 	user_id: string
 }
 
-export async function validateToken(token:string) : Promise<TwitchJWTSchema> {
-	const secret = new Buffer(process.env.EXTENSION_SECRET, 'base64');
+export function validateToken(token:string) : TwitchJWTSchema {
+	const secret = Buffer.from(process.env.EXTENSION_SECRET, 'base64');
 	let decodedToken;
-	console.log(`attempting to validate token ${token} with secret ${secret}`)
 	try {
-		const dumbDecode = jwt.decode(token);
-		console.log(`Dumb decode returns `, dumbDecode);
 		decodedToken = jwt.verify(token, secret)
+		if(decodedToken.opaque_user_id.charAt(0) !== 'U') {
+			throw new Error('Non-stable user_id from token')
+		} else if(decodedToken.role !== 'broadcaster') {
+			throw new Error('Only broadcasters can modify their list')
+		}
 	} catch (error) {
 		console.error(error);
 		throw new Error(`Invalid token ${token}`);
 	}
-
-	console.log(`decoded token is ${decodedToken}`);
-
 	return decodedToken;
 }
