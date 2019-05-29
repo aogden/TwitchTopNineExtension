@@ -5,6 +5,7 @@ Backend
 - [x] node modules imported in lambda (??)
 - [ ] API for add list item, delete list item and get list
 - [ ] Twitch auth for add list item and delete list item
+- [ ] Extension secret to lambda through serverless and dotenv?
 
 Frontend
 - [ ] Grab twitch user lookup from gist

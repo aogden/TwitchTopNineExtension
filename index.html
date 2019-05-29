@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+<script>
+	console.log(`attempting auth`)
+	window.Twitch.ext.onAuthorized((auth) => {
+		console.log(`auth complete token ${auth.token} user ${auth.userId}`, auth)
+	});
+</script>
+
+<head>
+	<title>This is the title of the webpage!</title>
+</head>
+
+<body>
+	<p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this
+		<strong>p</strong> tag and its contents.</p>
+</body>
+
+</html>

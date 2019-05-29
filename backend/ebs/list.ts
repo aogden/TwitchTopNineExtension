@@ -2,6 +2,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { DynamoDB } from 'aws-sdk'
 import 'source-map-support/register';
 import * as uuid from 'uuid/v4'
+import {validateToken} from './auth'
 
 const dynamoDb = new DynamoDB.DocumentClient();
 
@@ -37,6 +38,18 @@ export const getItems: APIGatewayProxyHandler = async (event, _context) => {
 
 
 export const setItems: APIGatewayProxyHandler = async (event, _context) => {
+	//Validate auth
+	try {
+		validateToken(event.headers.authToken);
+	} catch (error) {
+		console.error(error);
+		return {
+			statusCode: error.statusCode || 501,
+			headers: {'Content-Type': 'text/plain'},
+			body: `Invalid token ${event.headers.authToken}`
+		}
+	}
+
 	const timestamp = new Date().getTime();
 	console.log(`event body is `, event.body)
 	const data = JSON.parse(event.body);
