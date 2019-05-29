@@ -1,9 +1,17 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import { DynamoDB } from 'aws-sdk'
 import 'source-map-support/register';
-// import { uuid } from 'uuid'
+import * as uuid from 'uuid/v4'
 
 const dynamoDb = new DynamoDB.DocumentClient();
+
+interface ListSchema {
+	id: string,
+	internalId: string,
+	list: string[],
+	createdAt: number,
+	updatedAt: number
+}
 
 
 export const getItems: APIGatewayProxyHandler = async (event, _context) => {
@@ -32,14 +40,16 @@ export const setItems: APIGatewayProxyHandler = async (event, _context) => {
 	const timestamp = new Date().getTime();
 	console.log(`event body is `, event.body)
 	const data = JSON.parse(event.body);
+	const listItem: ListSchema = {
+		id: event.pathParameters.id,
+		internalId: uuid(),
+		list: data.list,
+		createdAt: timestamp,
+		updatedAt: timestamp
+	}
 	const params = {
 		TableName: process.env.DYNAMODB_TABLE,
-		Item: { 
-			id: event.pathParameters.id,
-			list: data.list,
-			createdAt: timestamp,
-			updatedAt: timestamp
-		}
+		Item: listItem
 	}
 	try {
 		await dynamoDb.put(params).promise();

@@ -5,7 +5,8 @@
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "serverless deploy -v"
+    "deploy": "serverless deploy -v",
+    "build": "tsc"
   },
   "dependencies": {
     "source-map-support": "^0.5.10",
@@ -15,6 +16,7 @@
     "@types/aws-lambda": "^8.10.17",
     "@types/aws-sdk": "^2.7.0",
     "@types/node": "^10.12.18",
+    "@types/uuid": "^3.4.4",
     "serverless": "^1.43.0",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^5.3.3",
