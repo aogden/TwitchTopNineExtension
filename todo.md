@@ -13,6 +13,9 @@ Backend
 - [ ] Convenience running serverless local
 
 Frontend
+- [ ] Express setup with routing for panel and config
+- [ ] Express run local over https for localhost redirect in twitch extension config
+- [ ] AWS S3 deploy for frontend testing
 - [ ] Grab twitch user lookup from gist
 - [ ] HTML and css for friend grid (maybe react, maybe functional css, maybe from figma)
 - [ ] UI mockup for user customization
