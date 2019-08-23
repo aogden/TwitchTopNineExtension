@@ -4,4 +4,4 @@
 
 ### UI Design
 
-![img](https://twitch-ao-extension.s3-us-west-2.amazonaws.com/TwitchTopNine/TwitchTopNine.PNG "")
+![img](https://twitch-ao-extension.s3-us-west-2.amazonaws.com/TwitchTopNine.PNG "")
