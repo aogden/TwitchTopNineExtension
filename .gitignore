@@ -3,3 +3,4 @@ dist/*
 !gulpfile.js
 commands*.txt
 node_modules
+frontend/src/*.js*
