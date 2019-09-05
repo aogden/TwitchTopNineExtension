@@ -6,17 +6,16 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Twitch } from '../Twitch';
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
-  mounted() {
+  protected mounted() {
     console.log("AO MOUNTED");
     console.log(`attempting auth`);
-    window.Twitch.ext.onAuthorized((auth) => {
-      console.log(`auth complete token ${auth.token} user ${auth.userId}`, auth);
-    });
+    Twitch.configure(window);
   }
 }
 </script>

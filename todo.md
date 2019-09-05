@@ -15,14 +15,12 @@ Backend
 Frontend
 - [x] Vuejs basic setup and deploy
 - [x] Twitch auth in vuejs hello world
-- [ ] Express setup with routing for panel and config
-- [ ] Express run local over https for localhost redirect in twitch extension config
-- [ ] AWS S3 deploy for frontend testing
+- [x] AWS S3 deploy for frontend testing
 - [ ] Grab twitch user lookup from gist
 - [ ] HTML and css for friend grid (maybe react, maybe functional css, maybe from figma)
 - [ ] UI mockup for configuration
+- [ ] Dark mode mockup for friend list
 - [ ] Twitch extension configuration page
 - [ ] Twitch extension panel page
 - [ ] Twitch extension mobile page
 - [ ] UI mockup for user customization
-- [ ] Dark mode mockup for friend list
