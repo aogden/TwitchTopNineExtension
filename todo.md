@@ -8,6 +8,7 @@ Backend
 - [x] Buffer vulnerability for base64 decoding
 - [x] Convenience tailing cloudwatch for serverless lambdas
 - [x] .env template
+- [ ] Cleanup default handler
 - [ ] Unit tests for list APIs
 - [ ] API for add list item, delete list item and get list
 - [ ] Convenience running serverless local
@@ -18,8 +19,8 @@ Frontend
 - [x] AWS S3 deploy for frontend testing
 - [ ] Grab twitch user lookup from gist
 - [ ] HTML and css for friend grid (maybe react, maybe functional css, maybe from figma)
-- [ ] UI mockup for configuration
-- [ ] Dark mode mockup for friend list
+- [x] UI mockup for configuration
+- [x] Dark mode mockup for friend list
 - [ ] Twitch extension configuration page
 - [ ] Twitch extension panel page
 - [ ] Twitch extension mobile page
